@@ -17,8 +17,23 @@ public class MainApp {
     			 reg.RegisterNewUser();
     			 break;
     		 case 2:
+    			 System.out.println("1.Admin Login.");
+    			 System.out.println("2.User Login.");
+    			 int login=scan.nextInt();
     			 Login log=new Login();
-    			 log.Newlogin();
+    			 if(login==1)
+    			 {
+    				 log.AdminLogin();
+    			 }
+    			 else if(login==2)
+    			 {
+    				 log.UserLogin();
+    			 }
+    			 else
+    			 {
+    				 System.out.println("Invalid input");
+    				 main(null);
+    			 }
     			 break;
 			default:
 				System.out.println("Invalid Input");

@@ -11,9 +11,17 @@ public class SqlConnection {
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/NewRegistration","root","Admin@123");
 			Statement stmt=con.createStatement();
 			System.out.println("Inserting records");
-			String sql="Insert into NewRegistration values('"+slno+"','"+reg.getFullName()+"','"+reg.getPhonenumber()+
+			if(slno==1)
+			{
+				String database="use newregistration";
+				stmt.executeUpdate(database);
+				String table="create table Registration(Slno int,FullName varchar(45),PhoneNo varchar(45),"
+						+ "Emailid varchar(45),Age int,Address varchar(45),Pass varchar(45))";
+				stmt.executeUpdate(table);
+			}
+			String sql="Insert into Registration values('"+slno+"','"+reg.getFullName()+"','"+reg.getPhonenumber()+
 					"','"+reg.getEmailId()+"',"+reg.getAge()+",'"+reg.getAddress()+"','"+reg.getPassword()+"');";
-			//String sql="Insert into NewRegistration values(1,'Akash','9998887776','abcd',22,'acd_avenue','abcdefg')";
+			slno++;
 			stmt.executeUpdate(sql);
 			System.out.println("Records inserted");
 		}

@@ -81,7 +81,7 @@ public class Registration {
 	    	System.out.println("Thank you");
 	    	SqlConnection con=new SqlConnection();
 	    	con.Connection(slno,reg);
-	    	slno++;
+	    	//slno++;
 	    	System.out.println("<<<<===========================>>>>");
 	    	MainApp.main(null);
 	    	}
