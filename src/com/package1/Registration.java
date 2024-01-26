@@ -50,6 +50,22 @@ public class Registration {
 	public static void setPassword(String password) {
 		Password = password;
 	}
+	
+	public static String getRole() {
+		return Role;
+	}
+
+	public static void setRole(String role) {
+		Role = role;
+	}
+	
+	public static String getProfStud() {
+		return ProfStud;
+	}
+
+	public static void setProfStud(String profStud) {
+		ProfStud = profStud;
+	}
 
 	private static String FullName;
 	private static String Phonenumber;
@@ -57,7 +73,9 @@ public class Registration {
 	private static int Age;
 	private static String Address;
 	private static String Password;
-	
+	private static String Role;
+	private static String ProfStud;
+
 	public static void RegisterNewUser()
 	{
 		int slno=1;
@@ -78,9 +96,40 @@ public class Registration {
 	    	reg.Address=scan.next();
 	    	System.out.println("Please enter your Password: ");
 	    	reg.Password=scan.next();
+	    	System.out.println("Registering as a User of an Admin");
+	    	String role=scan.next();
+	    	//reg.Role=scan.next();
+	    	if(role.equals("User"))
+	    	{
+	    		reg.Role=role;
+	    	}
+	    	else if(role.equals("Admin"))
+	    	{
+	    		reg.Role=role;
+	    	}
+	    	else
+	    	{
+	    		System.out.println("Invalid input");
+	    		RegisterNewUser();
+	    	}
+	    	System.out.println("Registering as a Student of a Professor");
+	    	String ProfStud=scan.next();
+	    	if(ProfStud.equals("Professor"))
+	    	{
+	    		reg.ProfStud=ProfStud;
+	    	}
+	    	else if(ProfStud.equals("Student"))
+	    	{
+	    		reg.ProfStud=ProfStud;
+	    	}
+	    	else
+	    	{
+	    		System.out.println("Invalid input");
+	    		RegisterNewUser();
+	    	}
 	    	System.out.println("Thank you");
 	    	SqlConnection con=new SqlConnection();
-	    	con.Connection(slno,reg);
+	    	con.Connection(reg);
 	    	//slno++;
 	    	System.out.println("<<<<===========================>>>>");
 	    	MainApp.main(null);
@@ -90,4 +139,6 @@ public class Registration {
 	    	System.out.println(ex.getMessage());
 	    }
 	}
+
+	
 }
