@@ -413,7 +413,8 @@ public class SqlConnection {
 			String query="Select * from EnrolledCourses where HandledBy='"+ProfessorName+"';";
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs=ps.executeQuery(query);
-			rs.next();
+			while(rs.next())
+			{
 			int StudentId=rs.getInt("StudentId");
 			int CourseId=rs.getInt("CourseId");
 			String StudentName=rs.getString("StudentName");
@@ -423,6 +424,7 @@ public class SqlConnection {
 					HandledBy+"',"+scores+");";
 			Statement stmt=con.createStatement();
 			stmt.executeUpdate(Insert);
+			}
 			System.out.println("Scores provided Successfully");
 		}
 		catch(Exception ex)
