@@ -5,7 +5,21 @@ public class courses {
 	private int TimeDuration;
 	private int Price;
 	private String certificationavl;
+	private int CourseId;
+	private String HangleBy;
 	
+	public int getCourseId() {
+		return CourseId;
+	}
+	public void setCourseId(int courseId) {
+		CourseId = courseId;
+	}
+	public String getHangleBy() {
+		return HangleBy;
+	}
+	public void setHangleBy(String hangleBy) {
+		HangleBy = hangleBy;
+	}
 	public String getCourseName() {
 		return CourseName;
 	}

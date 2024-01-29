@@ -66,6 +66,15 @@ public class Registration {
 	public static void setProfStud(String profStud) {
 		ProfStud = profStud;
 	}
+	
+	public static int getId() {
+		return Id;
+	}
+
+	public static void setId(int id) {
+		Id = id;
+	}
+
 
 	private static String FullName;
 	private static String Phonenumber;
@@ -75,7 +84,9 @@ public class Registration {
 	private static String Password;
 	private static String Role;
 	private static String ProfStud;
+	private static int Id;
 
+	
 	public static void RegisterNewUser()
 	{
 		int slno=1;
@@ -127,6 +138,8 @@ public class Registration {
 	    		System.out.println("Invalid input");
 	    		RegisterNewUser();
 	    	}
+	    	System.out.println("Please enter a Id to get registered");
+	    	reg.Id=scan.nextInt();
 	    	System.out.println("Thank you");
 	    	SqlConnection con=new SqlConnection();
 	    	con.Connection(reg);

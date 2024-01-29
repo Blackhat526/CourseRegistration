@@ -119,6 +119,10 @@ public class Login {
 			    		       {
 			    		    	   course.setCertificationavl("No");
 			    		       }
+			    		       System.out.println("Please enter the course Id :");
+			    		       course.setCourseId(scan.nextInt());
+			    		       System.out.println("Please enter the name of the professor by whom the course is handled by :");
+			    		       course.setHangleBy(scan.next());
 			    			   SqlConnection con2 = new SqlConnection();
 			    			   boolean coursesuccess=con2.CourseRegistration(course);
 			    			   if(coursesuccess==true)
@@ -145,16 +149,36 @@ public class Login {
 			    			   
 			    		   case 5:
 			    			   System.out.println("<<<<===========================>>>>");
-			    			   System.out.println("View Courses");
+			    			   System.out.println("View users");
 			    			   SqlConnection viewusers = new SqlConnection();
 			    			   viewusers.UsersAvailable();
 			    			   AdminLogin();
 			    			   break;
 			    			   
 			    		   case 6:
+			    			   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Courses available");
+			    			   SqlConnection courses = new SqlConnection();
+			    			   courses.CoursesAvailable();
+			    			   System.out.println("Please type the id of the course that needs to be deleted :");
+			    			   int delete=scan.nextInt();
+			    			   SqlConnection deletecourse = new SqlConnection();
+			    			   deletecourse.DeleteCourse(delete);
+			    			   System.out.println("The particular course was deleted");
+			    			   AdminLogin();
 			    			   break;
 			    			   
 			    		   case 7:
+			    			   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Users available");
+			    			   SqlConnection users = new SqlConnection();
+			    			   users.UsersAvailable();
+			    			   System.out.println("Please type the id of the user that needs to be deleted :");
+			    			   int deleteuser=scan.nextInt();
+			    			   SqlConnection deleteUser = new SqlConnection();
+			    			   deleteUser.DeleteUser(deleteuser);
+			    			   System.out.println("The particular user was deleted");
+			    			   AdminLogin();
 			    			   break;
 			    			   
 			    		   case 8:
@@ -215,21 +239,63 @@ public class Login {
     					   switch(student1)
     					   {
     					   case 1:
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Courses available");
+			    			   SqlConnection Viewcourses = new SqlConnection();
+			    			   Viewcourses.CoursesAvailable();
+			    			   System.out.println("Please enter the Id of the course to be enrolled :");
+			    			   int CourseId=scan.nextInt();
+			    			   System.out.println("Please enter the Student Id :");
+			    			   int StudentId=scan.nextInt();
+			    			   Viewcourses.EnrollCourse(CourseId,StudentId);
     						   break;
     						   
     					   case 2:
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Courses available");
+			    			   SqlConnection viewcourses = new SqlConnection();
+			    			   viewcourses.CoursesAvailable();
+			    			   UserLogin();
     						   break;
     						   
     					   case 3:
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Enrolled Courses");
+			    			   SqlConnection enrolledcourses = new SqlConnection();
+			    			   enrolledcourses.CoursesEnrolled();
+			    			   UserLogin();
     						   break;
     						   
     					   case 4:
+    						   System.out.println("<<<<===========================>>>>");
+    						   System.out.println("Please enter the Email Id :");
+    						   String emailid=scan.next();
+    						   System.out.println("Please enter the Old Password :");
+    						   String OldPass=scan.next();
+    						   System.out.println("Please enter the new Password :");
+    						   String NewPass=scan.next();
+    						   SqlConnection ChangePass = new SqlConnection();
+    						   ChangePass.ChangePassword(emailid,OldPass,NewPass);
+    						   UserLogin();
     						   break;
     						   
     					   case 5:
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Scores");
+			    			   SqlConnection scores = new SqlConnection();
+			    			   scores.ViewScores();
+			    			   UserLogin();
     						   break;
     						   
     					   case 6:
+    						   //total report card
+    						   System.out.println("Please enter your student id to get your report card");
+    						   int Studentid = scan.nextInt();
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("**********Report Card**************");
+			    			   SqlConnection reportcard = new SqlConnection();
+			    			   reportcard.Reportcard(Studentid);
+			    			   UserLogin();
     						   break;
     						   
     					   case 7:
@@ -258,18 +324,45 @@ public class Login {
     					   System.out.println("1.View Courses");
     					   System.out.println("2.View courses handled");
     					   System.out.println("3.Grade Students for the students handled");
-    					   //System.out.println("5.View Scores");
+    					   System.out.println("4.Main Menu");
     					   //System.out.println("6.View Total report card");
     					   int student1=scan.nextInt();
     					   switch(student1)
     					   {
     					   case 1:
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Courses available");
+			    			   SqlConnection viewcourses = new SqlConnection();
+			    			   viewcourses.CoursesAvailable();
+			    			   UserLogin();
     						   break;
     						   
     					   case 2:
+    						   System.out.println("Please enter the name of the professor :");
+    						   String ProfessorName=scan.next();
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Courses handled");
+			    			   SqlConnection courseshandled = new SqlConnection();
+			    			   courseshandled.CoursesHandled(ProfessorName);
+			    			   UserLogin();
     						   break;
     						   
     					   case 3:
+    						   System.out.println("<<<<===========================>>>>");
+			    			   System.out.println("Enrolled Courses");
+			    			   SqlConnection enrolledcourses = new SqlConnection();
+			    			   enrolledcourses.CoursesEnrolled();
+    						   //SqlConnection gradestudents = new SqlConnection();
+			    			   System.out.println("Please provide the name of the professor :");
+			    			   String ProName=scan.next();
+			    			   System.out.println("Please provide scores for the enrolled courses out of 100");
+			    			   int Scores=scan.nextInt();
+			    			   enrolledcourses.ProvideGrades(Scores,ProName);
+			    			   UserLogin();
+    						   break;
+    						   
+    					   case 4:
+    						   MainApp.main(null);
     						   break;
     						   
     					  default:
