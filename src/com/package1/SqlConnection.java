@@ -175,6 +175,7 @@ public class SqlConnection {
 
 	public static boolean CourseRegistration(courses course)
 	{
+		int CourseSlno=1;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/NewRegistration","root","Admin@123");
